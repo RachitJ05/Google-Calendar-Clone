@@ -3,6 +3,7 @@ import Calendar from './components/Calendar';
 import Sidebar from './components/Sidebar';
 import CalendarHeader from './components/CalendarHeader';
 import EventModal from './components/EventModal';
+import { eventService } from './services/api';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('month');

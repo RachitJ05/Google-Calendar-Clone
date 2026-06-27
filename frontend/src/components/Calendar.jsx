@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { eventService } from '../services/api';
 
 export default function Calendar({ view, onEventClick, onDateClick, onCreateClick, refreshTrigger, selectedDate, onCurrentDateChange, calendarApiRef, onCalendarApiReady }) {
   const [events, setEvents] = useState([]);
