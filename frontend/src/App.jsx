@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import Calendar from './components/Calendar';
 import Sidebar from './components/Sidebar';
 import CalendarHeader from './components/CalendarHeader';
+import EventModal from './components/EventModal';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('month');
@@ -13,6 +14,19 @@ export default function App() {
   const [currentDate, setCurrentDate] = useState({ date: new Date(), start: new Date(), end: new Date(), view: 'month' });
   const calendarApiRef = useRef(null);
   const [calendarApi, setCalendarApi] = useState(null);
+
+  // Debug: log when calendar API changes
+  useEffect(() => {
+    console.log('Calendar API state updated:', calendarApi);
+    if (calendarApi) {
+      console.log('Calendar API methods available:', {
+        today: typeof calendarApi.today,
+        prev: typeof calendarApi.prev,
+        next: typeof calendarApi.next,
+        gotoDate: typeof calendarApi.gotoDate
+      });
+    }
+  }, [calendarApi]);
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
@@ -35,6 +49,47 @@ export default function App() {
     setSelectedDate(new Date());
     setIsModalOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+    setSelectedDate(null);
+  };
+
+  const handleSaveEvent = async (eventId, eventData) => {
+    try {
+      if (eventId) {
+        // Update existing event
+        await eventService.updateEvent(eventId, eventData);
+      } else {
+        // Create new event
+        await eventService.createEvent(eventData);
+      }
+      // Trigger refresh
+      setRefreshTrigger(prev => prev + 1);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      await eventService.deleteEvent(eventId);
+      // Trigger refresh
+      setRefreshTrigger(prev => prev + 1);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // Determine event data for modal
+  const modalEvent = selectedEvent || (selectedDate ? {
+    start: selectedDate,
+    end: new Date(selectedDate.getTime() + 60 * 60 * 1000),
+    title: '',
+    description: '',
+    allDay: false,
+  } : null);
 
   return (
     <div className="app-container">
@@ -67,6 +122,15 @@ export default function App() {
           />
         </main>
       </div>
+
+      {/* Event Modal */}
+      <EventModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        event={modalEvent}
+        onSave={handleSaveEvent}
+        onDelete={handleDeleteEvent}
+      />
     </div>
   );
 }
