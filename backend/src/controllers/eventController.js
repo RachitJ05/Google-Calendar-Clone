@@ -76,19 +76,23 @@ export const createEvent = async (req, res) => {
       },
     });
 
-    const created = await prisma.event.create({
-      data: { title, description, startTime: startD, endTime: endD },
-    });
-
     if (overlapping) {
-      return res.status(201).json({
-        event: created,
-        warning: "Event overlaps an existing event",
+      return res.status(409).json({
+        error: "This event overlaps with another event.",
         overlappingId: overlapping.id,
       });
     }
 
-    res.status(201).json(created);
+    const created = await prisma.event.create({
+      data: {
+        title,
+        description,
+        startTime: startD,
+        endTime: endD,
+      },
+    });
+
+    return res.status(409).json(created);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to create event" });
@@ -121,20 +125,24 @@ export const updateEvent = async (req, res) => {
       },
     });
 
-    const updated = await prisma.event.update({
-      where: { id },
-      data: { title, description, startTime: startD, endTime: endD },
-    });
-
     if (overlapping) {
-      return res.json({
-        event: updated,
-        warning: "Updated event overlaps an existing event",
+      return res.status(409).json({
+        error: "This event overlaps with another event.",
         overlappingId: overlapping.id,
       });
     }
 
-    res.json(updated);
+    const updated = await prisma.event.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        startTime: startD,
+        endTime: endD,
+      },
+    });
+
+    return res.json(updated);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to update event" });

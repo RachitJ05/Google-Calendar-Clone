@@ -68,8 +68,13 @@ export default function App() {
       }
       // Trigger refresh
       setRefreshTrigger(prev => prev + 1);
-    } catch (error) {
-      throw error;
+    } catch (err) {
+       if(err.response?.status === 409){
+        alert("This event overlaps another event.");
+          return;
+        }
+
+      alert("Something went wrong.");
     }
   };
 

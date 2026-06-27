@@ -264,7 +264,7 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
 
       info.revert();
 
-      alert("Unable to move event");
+      alert("This event overlaps another event.");
     }
   };
 
@@ -284,7 +284,7 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
 
       info.revert();
 
-      alert("Unable to resize event");
+      alert("This event overlaps another event.");
     }
   };
 
@@ -349,6 +349,7 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
             minute: '2-digit',
             meridiem: 'short',
           }}
+          timeZone="local"
           buttonText={{
             today: 'Today',
             month: 'Month',
