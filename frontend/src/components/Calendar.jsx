@@ -248,6 +248,46 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, loading]);
 
+  const handleEventDrop = async (info) => {
+    try {
+      await eventService.updateEvent(info.event.id, {
+        title: info.event.title,
+        description: info.event.extendedProps.description,
+        startTime: info.event.start.toISOString(),
+        endTime: info.event.end.toISOString(),
+        allDay: info.event.allDay,
+      });
+
+      fetchEvents();
+    } catch (err) {
+      console.error(err);
+
+      info.revert();
+
+      alert("Unable to move event");
+    }
+  };
+
+  const handleEventResize = async (info) => {
+    try {
+      await eventService.updateEvent(info.event.id, {
+        title: info.event.title,
+        description: info.event.extendedProps.description,
+        startTime: info.event.start.toISOString(),
+        endTime: info.event.end.toISOString(),
+        allDay: info.event.allDay,
+      });
+
+      fetchEvents();
+    } catch (err) {
+      console.error(err);
+
+      info.revert();
+
+      alert("Unable to resize event");
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ 
@@ -285,9 +325,13 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
           dateClick={handleDateClick}
           eventClick={handleEventClick}
           datesSet={handleDatesSet}
-          editable={false}
-          selectable={false}
+          editable={true}
+          eventStartEditable={true}
+          eventDurationEditable={true}
+          selectable={true}
           headerToolbar={false}
+          eventDrop={handleEventDrop}
+          eventResize={handleEventResize}
           initialView="dayGridMonth"
           height="auto"
           slotMinTime="00:00:00"
