@@ -357,13 +357,12 @@ body {
 .mini-calendar-day {
   background: none;
   border: none;
-  padding: 8px;
+  padding: 7px;
+  padding-bottom: 10px;
   font-size: 13px;
   color: #3c4043;
   cursor: pointer;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
