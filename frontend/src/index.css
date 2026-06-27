@@ -43,6 +43,211 @@ body {
   background-color: #fff;
 }
 
+/* Main Header */
+.calendar-main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px;
+  border-bottom: 1px solid #e8eaed;
+  background-color: #fff;
+  min-height: 64px;
+  position: relative;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.header-menu-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.header-menu-button:hover {
+  background-color: #f1f3f4;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 400;
+  color: #3c4043;
+  margin: 0;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  justify-content: center;
+}
+
+.header-today-button {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  color: #3c4043;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  pointer-events: auto;
+  position: relative;
+  z-index: 101;
+}
+
+.header-today-button:hover {
+  background-color: #f8f9fa;
+  border-color: #dadce0;
+}
+
+.header-today-button:active {
+  background-color: #e8eaed;
+}
+
+.header-navigation {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.header-nav-button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  pointer-events: auto;
+  position: relative;
+  z-index: 101;
+}
+
+.header-nav-button:hover {
+  background-color: #f1f3f4;
+}
+
+.header-nav-button:active {
+  background-color: #e8eaed;
+}
+
+.header-nav-button:first-child {
+  border-right: 1px solid #dadce0;
+}
+
+.header-date-range {
+  font-size: 22px;
+  font-weight: 400;
+  color: #3c4043;
+  min-width: 200px;
+  text-align: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header-icon-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.header-icon-button:hover {
+  background-color: #f1f3f4;
+}
+
+.header-user {
+  margin-left: 8px;
+}
+
+.header-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #1a73e8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.header-user-avatar:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* View Dropdown */
+.header-view-dropdown {
+  position: relative;
+  margin: 0 8px;
+}
+
+.view-select {
+  padding: 8px 32px 8px 16px;
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3c4043;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%233c4043' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: all 0.2s;
+}
+
+.view-select:hover {
+  background-color: #f8f9fa;
+  border-color: #dadce0;
+}
+
+.view-select:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
 /* Sidebar */
 .sidebar {
   width: 256px;
@@ -302,4 +507,3 @@ body {
   background-color: #fff;
   min-height: 100%;
 }
-

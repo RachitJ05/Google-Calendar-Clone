@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Calendar from './components/Calendar';
 import Sidebar from './components/Sidebar';
+import CalendarHeader from './components/CalendarHeader';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('month');
@@ -37,6 +38,13 @@ export default function App() {
 
   return (
     <div className="app-container">
+      <CalendarHeader 
+        onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+        currentView={currentView}
+        onViewChange={setCurrentView}
+        currentDate={currentDate}
+        calendarApi={calendarApi}
+      />
       <div className="app-layout">
         {sidebarOpen && (
           <Sidebar
