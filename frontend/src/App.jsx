@@ -53,8 +53,11 @@ export default function App() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedEvent(null);
-    setSelectedDate(null);
+
+    setTimeout(() => {
+      setSelectedEvent(null);
+      setSelectedDate(null);
+    }, 200);
   };
 
   const handleSaveEvent = async (eventId, eventData) => {

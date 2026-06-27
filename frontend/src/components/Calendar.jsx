@@ -257,8 +257,6 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
         endTime: info.event.end.toISOString(),
         allDay: info.event.allDay,
       });
-
-      fetchEvents();
     } catch (err) {
       console.error(err);
 
@@ -277,8 +275,6 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
         endTime: info.event.end.toISOString(),
         allDay: info.event.allDay,
       });
-
-      fetchEvents();
     } catch (err) {
       console.error(err);
 
