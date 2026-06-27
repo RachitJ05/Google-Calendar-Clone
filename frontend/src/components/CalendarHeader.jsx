@@ -87,7 +87,7 @@ export default function CalendarHeader({ onMenuClick, currentView, onViewChange,
         
         <div className="header-user">
           <div className="header-user-avatar">
-            <span>AS</span>
+            <span>RJ</span>
           </div>
         </div>
       </div>
