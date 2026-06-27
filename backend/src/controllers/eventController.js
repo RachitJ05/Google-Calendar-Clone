@@ -92,7 +92,13 @@ export const createEvent = async (req, res) => {
       },
     });
 
-    return res.status(409).json(created);
+    return res.status(201).json({
+      event: created,
+      warning: overlapping
+        ? "This event overlaps another event."
+        : null,
+      overlappingId: overlapping?.id ?? null,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to create event" });
@@ -142,7 +148,13 @@ export const updateEvent = async (req, res) => {
       },
     });
 
-    return res.json(updated);
+    return res.json({
+      event: updated,
+      warning: overlapping
+        ? "This event overlaps another event."
+        : null,
+      overlappingId: overlapping?.id ?? null,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to update event" });

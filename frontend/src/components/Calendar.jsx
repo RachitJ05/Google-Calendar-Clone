@@ -250,37 +250,39 @@ export default function Calendar({ view, onEventClick, onDateClick, onCreateClic
 
   const handleEventDrop = async (info) => {
     try {
-      await eventService.updateEvent(info.event.id, {
+        const response = await eventService.updateEvent(info.event.id, {
         title: info.event.title,
         description: info.event.extendedProps.description,
         startTime: info.event.start.toISOString(),
         endTime: info.event.end.toISOString(),
         allDay: info.event.allDay,
       });
+      if (response.warning) {
+        alert(response.warning);
+      }
     } catch (err) {
       console.error(err);
 
-      info.revert();
-
-      alert("This event overlaps another event.");
+      alert(err.response?.data?.error || "Something went wrong.");
     }
   };
 
   const handleEventResize = async (info) => {
     try {
-      await eventService.updateEvent(info.event.id, {
+        const response = await eventService.updateEvent(info.event.id, {
         title: info.event.title,
         description: info.event.extendedProps.description,
         startTime: info.event.start.toISOString(),
         endTime: info.event.end.toISOString(),
         allDay: info.event.allDay,
       });
+      if (response.warning) {
+        alert(response.warning);
+      }
     } catch (err) {
       console.error(err);
 
-      info.revert();
-
-      alert("This event overlaps another event.");
+      alert(err.response?.data?.error || "Something went wrong.");
     }
   };
 

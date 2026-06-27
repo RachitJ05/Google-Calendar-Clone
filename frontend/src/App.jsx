@@ -64,20 +64,21 @@ export default function App() {
     try {
       if (eventId) {
         // Update existing event
-        await eventService.updateEvent(eventId, eventData);
+        const response = await eventService.updateEvent(eventId, eventData);
+        if (response.warning) {
+            alert(response.warning);
+        }
       } else {
         // Create new event
-        await eventService.createEvent(eventData);
+        const response = await eventService.createEvent(eventData);
+        if (response.warning) {
+            alert(response.warning);
+        }
       }
       // Trigger refresh
       setRefreshTrigger(prev => prev + 1);
     } catch (err) {
-       if(err.response?.status === 409){
-        alert("This event overlaps another event.");
-          return;
-        }
-
-      alert("Something went wrong.");
+       alert(err.response?.data?.error || "Something went wrong.");
     }
   };
 
