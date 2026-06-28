@@ -1,3 +1,4 @@
+import { protect } from "../middleware/authMiddleware.js";
 import express from "express";
 import {
   listEvents,
@@ -9,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get("/", listEvents);
-router.get("/:id", getEvent);
-router.post("/", createEvent);
-router.put("/:id", updateEvent);
-router.delete("/:id", deleteEvent);
+router.get("/", protect, listEvents);
+router.get("/:id", protect, getEvent);
+router.post("/", protect, createEvent);
+router.put("/:id", protect, updateEvent);
+router.delete("/:id", protect, deleteEvent);
 
 export default router;

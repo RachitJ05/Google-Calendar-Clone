@@ -4,8 +4,12 @@ import Sidebar from './components/Sidebar';
 import CalendarHeader from './components/CalendarHeader';
 import EventModal from './components/EventModal';
 import { eventService } from './services/api';
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import Register from "./pages/Register";
 
-export default function App() {
+function CalendarApp() {
   const [currentView, setCurrentView] = useState('month');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -140,5 +144,24 @@ export default function App() {
         onDelete={handleDeleteEvent}
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <CalendarApp />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="/register" element={<Register/>} />
+    </Routes>
   );
 }

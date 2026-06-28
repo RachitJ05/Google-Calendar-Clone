@@ -29,7 +29,14 @@ export const listEvents = async (req, res) => {
     }
 
     // no range -> return all
-    const all = await prisma.event.findMany({ orderBy: { startTime: "asc" } });
+    const all = await prisma.event.findMany({
+      where:{
+          userId:req.user.id
+      },
+      orderBy:{
+          startTime:"asc"
+      }
+  });
     res.json(all);
   } catch (err) {
     console.error(err);
@@ -53,7 +60,7 @@ export const getEvent = async (req, res) => {
 // POST /api/events
 export const createEvent = async (req, res) => {
   try {
-    const { title, description, startTime, endTime } = req.body;
+    const { title, description, startTime, endTime, allDay } = req.body;
     if (!title || !startTime || !endTime) {
       return res
         .status(400)
@@ -69,6 +76,7 @@ export const createEvent = async (req, res) => {
     // Check overlap (warn only)
     const overlapping = await prisma.event.findFirst({
       where: {
+        userId: req.user.id,
         AND: [
           { startTime: { lt: endD } },
           { endTime: { gt: startD } },
@@ -77,11 +85,14 @@ export const createEvent = async (req, res) => {
     });
 
     const created = await prisma.event.create({
-      data: {
+      data:{
         title,
         description,
-        startTime: startD,
-        endTime: endD,
+        startTime:startD,
+        endTime:endD,
+        allDay,
+
+        userId:req.user.id,
       },
     });
 
@@ -102,9 +113,14 @@ export const createEvent = async (req, res) => {
 export const updateEvent = async (req, res) => {
   try {
     const id = req.params.id;
-    const { title, description, startTime, endTime } = req.body;
+    const { title, description, startTime, endTime, allDay } = req.body;
 
-    const existing = await prisma.event.findUnique({ where: { id } });
+    const existing = await prisma.event.findFirst({
+      where:{
+        id,
+        userId:req.user.id,
+      }
+    });
     if (!existing) return res.status(404).json({ error: "Event not found" });
 
     const startD = startTime ? parseDate(startTime) : existing.startTime;
@@ -126,12 +142,6 @@ export const updateEvent = async (req, res) => {
 
     const updated = await prisma.event.update({
       where: { id },
-      data: {
-        title,
-        description,
-        startTime: startD,
-        endTime: endD,
-      },
     });
 
     return res.json({
@@ -148,9 +158,24 @@ export const updateEvent = async (req, res) => {
 };
 
 // DELETE /api/events/:id
+
+
+
+
 export const deleteEvent = async (req, res) => {
   try {
     const id = req.params.id;
+    const event = await prisma.event.findFirst({
+      where:{
+        id,
+        userId:req.user.id,
+      }
+    });
+    if(!event){
+      res.status(404).json({
+        error:"Event not found"
+    });
+  }
     await prisma.event.delete({ where: { id } });
     res.json({ success: true });
   } catch (err) {

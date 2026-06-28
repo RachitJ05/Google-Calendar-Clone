@@ -9,6 +9,14 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use(config=>{
+  const token=localStorage.getItem("token");
+  if(token){
+  config.headers.Authorization=`Bearer ${token}`;
+  }
+  return config;
+});
+
 export const eventService = {
   // Get events in a date range
   getEvents: async (start, end) => {
@@ -77,6 +85,21 @@ export const eventService = {
       console.error('Error deleting event:', error);
       throw error;
     }
+  },
+
+  register: async (userData) => {
+    const res = await api.post("/auth/register", userData);
+    return res.data;
+  },
+
+  login: async (userData) => {
+    const res = await api.post("/auth/login", userData);
+    return res.data;
+  },
+
+  googleLogin: async (data) => {
+    const res = await api.post("/auth/google", data);
+    return res.data;
   },
 };
 

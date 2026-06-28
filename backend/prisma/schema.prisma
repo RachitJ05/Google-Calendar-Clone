@@ -9,8 +9,11 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
+  googleId  String?   @unique
   email     String   @unique
+  password  String?
   name      String?
+  picture   String?
   events    Event[]
   createdAt DateTime @default(now())
 }

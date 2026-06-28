@@ -1,4 +1,16 @@
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from "react-router-dom";
+
 export default function CalendarHeader({ onMenuClick, currentView, onViewChange, currentDate, calendarApi }) {
+  
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   const getDateRangeText = () => {
     if (!currentDate) return '';
     
@@ -89,6 +101,7 @@ export default function CalendarHeader({ onMenuClick, currentView, onViewChange,
           <div className="header-user-avatar">
             <span>RJ</span>
           </div>
+          <button onClick={handleLogout}> Logout </button>
         </div>
       </div>
     </header>

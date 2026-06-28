@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import eventRoutes from "./routes/eventRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 
 dotenv.config();
@@ -16,6 +17,9 @@ app.get("/", (req, res) => res.send("Server is running successfully 🚀"));
 
 // mount events API
 app.use("/api/events", eventRoutes);
+
+// mount auth API
+app.use("/api/auth", authRoutes);
 
 // error fallback
 app.use((err, req, res, next) => {
