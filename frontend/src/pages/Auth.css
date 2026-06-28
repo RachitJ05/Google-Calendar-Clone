@@ -1,6 +1,4 @@
-/* ===========================
-   Background
-=========================== */
+/* background */
 
 *{
     margin:0;
@@ -14,583 +12,348 @@ body{
 }
 
 .auth-container{
-
     min-height:100vh;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     background:linear-gradient(
         135deg,
         #4285F4,
         #7BAAF7,
         #E8F0FE
     );
-
     padding:30px;
-
 }
 
-/* ===========================
-   Card
-=========================== */
+/* Card */
 
 .auth-card{
-
     width:430px;
-
     background:white;
-
     border-radius:24px;
-
     padding:45px;
-
     box-shadow:
         0 15px 50px rgba(0,0,0,.15);
-
     animation:fadeUp .6s ease;
-
 }
 
-/* ===========================
-   Logo
-=========================== */
+/* Logo */
 
 .auth-logo{
-
     width:72px;
-
     height:72px;
-
     margin:auto;
-
     margin-bottom:20px;
-
     border-radius:18px;
-
     background:#4285F4;
-
     color:white;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:36px;
-
 }
 
-/* ===========================
-   Headings
-=========================== */
+/* Headings */
 
 .auth-card h1{
-
     text-align:center;
-
     font-size:30px;
-
     color:#202124;
-
     margin-bottom:10px;
-
-    font-weight:700;
-
+    font-weight:700
 }
 
 .subtitle{
-
     text-align:center;
-
     color:#5f6368;
-
     margin-bottom:35px;
-
     font-size:15px;
-
 }
 
-/* ===========================
-   Form
-=========================== */
+/* Form */
 
 .auth-form{
-
     display:flex;
-
     flex-direction:column;
-
     gap:18px;
-
 }
 
-/* ===========================
-   Inputs
-=========================== */
+/* Inputs */
 
 .auth-form input{
-
     width:100%;
-
     padding:16px 18px;
-
     border-radius:14px;
-
     border:1px solid #d2d6dc;
-
     outline:none;
-
     font-size:15px;
-
     transition:.25s;
-
     background:#fafafa;
-
 }
 
 .auth-form input:focus{
-
     border:1px solid #4285F4;
-
     background:white;
-
     box-shadow:0 0 0 4px rgba(66,133,244,.15);
-
 }
 
-/* ===========================
-   Button
-=========================== */
+/* Button */
 
 .primary-btn{
-
     margin-top:8px;
-
     padding:16px;
-
     border:none;
-
     border-radius:14px;
-
     background:#4285F4;
-
     color:white;
-
     font-size:16px;
-
     font-weight:600;
-
     cursor:pointer;
-
     transition:.3s;
-
 }
 
 .primary-btn:hover{
-
     background:#1a73e8;
-
     transform:translateY(-2px);
-
 }
 
 .primary-btn:active{
-
     transform:scale(.98);
-
 }
 
-/* ===========================
-   Divider
-=========================== */
+/* Divider */
 
 .divider{
-
     margin:30px 0;
-
     display:flex;
-
     align-items:center;
-
     color:#777;
-
     font-size:14px;
-
 }
 
 .divider::before,
 
 .divider::after{
-
     content:"";
-
     flex:1;
-
     height:1px;
-
     background:#ddd;
-
 }
 
 .divider span{
-
     margin:0 15px;
-
 }
 
-/* ===========================
-   Google Button
-=========================== */
+/* Google Button */
 
 .google-login{
-
     display:flex;
-
     justify-content:center;
-
     margin-bottom:28px;
-
 }
 
-/* ===========================
-   Bottom text
-=========================== */
+/* Bottom text */
 
 .bottom-text{
-
     text-align:center;
-
     color:#666;
-
     font-size:15px;
-
 }
 
 .bottom-text a{
-
     margin-left:6px;
-
     text-decoration:none;
-
     color:#1a73e8;
-
     font-weight:600;
-
 }
 
 .bottom-text a:hover{
-
     text-decoration:underline;
-
 }
 
-/* ===========================
-   Responsive
-=========================== */
+/* Responsive */
 
 @media(max-width:600px){
 
 .auth-card{
-
     width:100%;
-
     padding:35px 25px;
-
 }
 
 .auth-card h1{
-
     font-size:26px;
-
 }
 
 }
 
-/* ===========================
-   Animation
-=========================== */
+/* Animation */
 
 @keyframes fadeUp{
 
 from{
-
-opacity:0;
-
-transform:translateY(30px);
-
+    opacity:0;
+    transform:translateY(30px);
 }
 
 to{
-
-opacity:1;
-
-transform:translateY(0);
-
+    opacity:1;
+    transform:translateY(0);
 }
 
 }
 
 
-/* ==========================================
-   Premium Glass Effect
-========================================== */
+/* Premium Glass Effect */
 
 .auth-card{
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-
     border:1px solid rgba(255,255,255,.35);
-
     position:relative;
-
     overflow:hidden;
 }
 
 .auth-card::before{
-
     content:"";
-
     position:absolute;
-
     top:-120px;
-
     right:-120px;
-
     width:240px;
-
     height:240px;
-
     background:rgba(66,133,244,.08);
-
     border-radius:50%;
-
 }
 
 .auth-card::after{
-
     content:"";
-
     position:absolute;
-
     bottom:-90px;
-
     left:-90px;
-
     width:180px;
-
     height:180px;
-
     background:rgba(52,168,83,.08);
-
     border-radius:50%;
-
 }
 
-/* ==========================================
-   Floating Gradient Background
-========================================== */
+/* Floating Gradient Background */
 
 .auth-container{
-
     position:relative;
-
     overflow:hidden;
-
 }
 
 .auth-container::before{
-
     content:"";
-
     position:absolute;
-
     width:420px;
-
     height:420px;
-
     background:#4285F4;
-
     opacity:.18;
-
     border-radius:50%;
-
     top:-150px;
-
     left:-120px;
-
     filter:blur(80px);
-
     animation:blob1 10s infinite alternate;
-
 }
 
 .auth-container::after{
-
     content:"";
-
     position:absolute;
-
     width:350px;
-
     height:350px;
-
     background:#34A853;
-
     opacity:.15;
-
     border-radius:50%;
-
     bottom:-120px;
-
     right:-120px;
-
     filter:blur(90px);
-
     animation:blob2 12s infinite alternate;
-
 }
 
-/* ==========================================
-   Better Inputs
-========================================== */
+/* Better Inputs */
 
 .auth-form input{
-
     font-weight:500;
-
 }
 
 .auth-form input::placeholder{
-
     color:#9aa0a6;
-
 }
 
 .auth-form input:hover{
-
     border-color:#4285F4;
-
 }
 
-/* ==========================================
-   Better Buttons
-========================================== */
+/* Better Buttons */
 
 .primary-btn{
-
     box-shadow:
-
     0 12px 25px rgba(66,133,244,.28);
-
 }
 
 .primary-btn:hover{
-
     box-shadow:
-
     0 20px 35px rgba(66,133,244,.35);
-
 }
 
-/* ==========================================
-   Google Button Area
-========================================== */
+/* Google Button Area */
 
 .google-login{
-
     transition:.3s;
-
 }
 
 .google-login:hover{
-
     transform:scale(1.02);
-
 }
 
-/* ==========================================
-   Links
-========================================== */
+/* Links */
 
 .bottom-text{
-
     margin-top:5px;
-
 }
 
 .bottom-text a{
-
     transition:.25s;
-
 }
 
 .bottom-text a:hover{
-
     color:#174ea6;
-
 }
 
-/* ==========================================
-   Logo
-========================================== */
+/* Logo */
 
 .auth-logo{
-
     box-shadow:
-
     0 15px 30px rgba(66,133,244,.25);
-
     transition:.35s;
-
 }
 
 .auth-logo:hover{
-
     transform:rotate(8deg) scale(1.08);
-
 }
 
-/* ==========================================
-   Card Hover
-========================================== */
+/* Card Hover */
 
 .auth-card{
-
     transition:.35s;
-
 }
 
 .auth-card:hover{
-
     transform:translateY(-6px);
-
     box-shadow:
-
     0 25px 60px rgba(0,0,0,.18);
-
 }
 
-/* ==========================================
-   Animations
-========================================== */
+/* Animations */
 
 @keyframes blob1{
 
 0%{
-
-transform:translate(0,0);
-
+    transform:translate(0,0);
 }
 
 100%{
-
-transform:translate(60px,40px);
-
+    transform:translate(60px,40px);
 }
 
 }
@@ -598,77 +361,50 @@ transform:translate(60px,40px);
 @keyframes blob2{
 
 0%{
-
-transform:translate(0,0);
-
+    transform:translate(0,0);
 }
 
 100%{
-
-transform:translate(-60px,-40px);
-
+    transform:translate(-60px,-40px);
 }
 
 }
 
-/* ==========================================
-   Nice Scrollbar
-========================================== */
+/* Nice Scrollbar */
 
 ::-webkit-scrollbar{
-
-width:10px;
-
+    width:10px;
 }
 
 ::-webkit-scrollbar-thumb{
-
-background:#4285F4;
-
-border-radius:20px;
-
+    background:#4285F4;
+    border-radius:20px;
 }
 
 ::-webkit-scrollbar-track{
-
-background:#edf2ff;
-
+    background:#edf2ff;
 }
 
-/* ==========================================
-   Mobile
-========================================== */
+/* Mobile */
 
 @media(max-width:500px){
 
 .auth-container{
-
-padding:18px;
-
+    padding:18px;
 }
 
 .auth-card{
-
-padding:28px 22px;
-
-border-radius:18px;
-
+    padding:28px 22px;
+    border-radius:18px;
 }
 
 .auth-logo{
-
-width:60px;
-
-height:60px;
-
-font-size:30px;
-
+    width:60px;
+    height:60px;
+    font-size:30px;
 }
 
 .subtitle{
-
-font-size:14px;
-
+    font-size:14px;
 }
-
 }
