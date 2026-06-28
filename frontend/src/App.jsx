@@ -62,12 +62,13 @@ export default function App() {
 
   const handleSaveEvent = async (eventId, eventData) => {
     try {
+      let response;
       if (eventId) {
         // Update existing event
-        const response = await eventService.updateEvent(eventId, eventData);
+        response = await eventService.updateEvent(eventId, eventData);
       } else {
         // Create new event
-        const response = await eventService.createEvent(eventData);
+        response = await eventService.createEvent(eventData);
       }
       if (response.warning) {
         alert(response.warning);
