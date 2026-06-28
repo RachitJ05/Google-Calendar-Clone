@@ -3,13 +3,33 @@ import { useNavigate } from "react-router-dom";
 
 export default function CalendarHeader({ onMenuClick, currentView, onViewChange, currentDate, calendarApi }) {
   
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
+
+  const getInitials = () => {
+    if (!user) return "U";
+
+    if (user.name) {
+      const parts = user.name.trim().split(" ");
+      if (parts.length >= 2) {
+        return (
+          parts[0][0] +
+          parts[1][0]
+        ).toUpperCase();
+      }
+      return parts[0].substring(0, 2).toUpperCase();
+    }
+
+    if (user.email) {
+      return user.email.substring(0, 2).toUpperCase();
+    }
+    return "U";
+};
 
   const getDateRangeText = () => {
     if (!currentDate) return '';
@@ -99,7 +119,14 @@ export default function CalendarHeader({ onMenuClick, currentView, onViewChange,
         
         <div className="header-user">
           <div className="header-user-avatar">
-            <span>RJ</span>
+            {user?.picture ? (
+                <img
+                    src={user.picture}
+                    alt={user.name}
+                />
+            ) : (
+              <span>{getInitials()}</span>
+            )}
           </div>
           <button
             className="logout-btn"
