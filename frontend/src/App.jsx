@@ -65,15 +65,12 @@ export default function App() {
       if (eventId) {
         // Update existing event
         const response = await eventService.updateEvent(eventId, eventData);
-        if (response.warning) {
-            alert(response.warning);
-        }
       } else {
         // Create new event
         const response = await eventService.createEvent(eventData);
-        if (response.warning) {
-            alert(response.warning);
-        }
+      }
+      if (response.warning) {
+        alert(response.warning);
       }
       // Trigger refresh
       setRefreshTrigger(prev => prev + 1);

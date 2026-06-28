@@ -76,13 +76,6 @@ export const createEvent = async (req, res) => {
       },
     });
 
-    if (overlapping) {
-      return res.status(409).json({
-        error: "This Event overlaps an existing event.",
-        overlappingId: overlapping.id,
-      });
-    }
-
     const created = await prisma.event.create({
       data: {
         title,
@@ -130,13 +123,6 @@ export const updateEvent = async (req, res) => {
         ],
       },
     });
-
-    if (overlapping) {
-      return res.status(409).json({
-        error: "This Event overlaps an existing event.",
-        overlappingId: overlapping.id,
-      });
-    }
 
     const updated = await prisma.event.update({
       where: { id },
