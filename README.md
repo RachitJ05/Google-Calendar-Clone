@@ -459,3 +459,24 @@ This project is created for educational purposes.
 ---
 
 **Note**: This project is a high-fidelity clone created as an assignment. It demonstrates full-stack development skills, modern UI/UX practices, and comprehensive system design.
+
+
+## Theory Questions
+
+### 1. Imagine your calendar application now serves one million users. How would you redesign the backend to efficiently retrieve events, support recurring events, and prevent inconsistencies when multiple devices edit the same event?
+
+### Ans. For a large-scale system, I would optimize the backend in the following ways: 
+1. **Efficient Event Retrieval: Instead of fetching all events, the API would retrieve only events within the visible date range (e.g., current week or month). Database indexes on startTime, endTime, and userId would enable fast range queries.**
+2. **Recurring Events: Rather than storing every occurrence, I would store a recurrence rule (such as daily, weekly, or monthly) and generate occurrences dynamically for the requested date range. This reduces storage requirements and simplifies updates.**
+3. **Concurrency Control: To prevent conflicts when multiple devices edit the same event, each event would include a version number or last-updated timestamp. Before saving changes, the backend would verify that the event has not been modified elsewhere. If a conflict is detected, the user would be notified and asked to refresh or merge changes.**
+4. **Scalability: Frequently accessed data could be cached using Redis, and the application could be horizontally scaled behind a load balancer with a shared database.**
+
+### 2. Your calendar becomes slow when rendering thousands of events. What frontend optimization techniques would you apply to improve performance, and why would each technique help?
+
+### Ans. To keep the application responsive with a large number of events, I would use several frontend optimizations:
+1. **Load Visible Events Only: Request only the events for the currently visible date range instead of downloading every event.**
+2. **Virtualization: Render only the events that are currently visible on the screen, reducing DOM size and improving rendering performance.**
+3. **Memoization: Use React.memo, useMemo, and useCallback to avoid unnecessary component re-renders.**
+4. **Lazy Loading: Load heavy components such as modals or side panels only when they are needed, reducing the initial bundle size.**
+5. **Debouncing: Delay expensive operations like search or filtering until the user stops typing, reducing repeated computations.**
+6. **Optimistic UI Updates: Update the interface immediately after user actions while synchronizing changes with the backend in the background, creating a smoother user experience.**
