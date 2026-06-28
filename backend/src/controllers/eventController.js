@@ -78,7 +78,7 @@ export const createEvent = async (req, res) => {
 
     if (overlapping) {
       return res.status(409).json({
-        error: "This event overlaps with another event.",
+        error: "This Event overlaps an existing event.",
         overlappingId: overlapping.id,
       });
     }
@@ -95,7 +95,7 @@ export const createEvent = async (req, res) => {
     return res.status(201).json({
       event: created,
       warning: overlapping
-        ? "This event overlaps another event."
+        ? "This Event overlaps an existing event."
         : null,
       overlappingId: overlapping?.id ?? null,
     });
@@ -133,7 +133,7 @@ export const updateEvent = async (req, res) => {
 
     if (overlapping) {
       return res.status(409).json({
-        error: "This event overlaps with another event.",
+        error: "This Event overlaps an existing event.",
         overlappingId: overlapping.id,
       });
     }
@@ -151,7 +151,7 @@ export const updateEvent = async (req, res) => {
     return res.json({
       event: updated,
       warning: overlapping
-        ? "This event overlaps another event."
+        ? "This Event overlaps an existing event."
         : null,
       overlappingId: overlapping?.id ?? null,
     });
