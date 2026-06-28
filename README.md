@@ -7,6 +7,8 @@ A high-fidelity full-stack clone of Google Calendar built with React, Node.js, E
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-blue)
 
+## Live - https://google-calendar-clone-mu.vercel.app/
+
 ## Table of Contents
 
 - [Setup Instructions](#setup-instructions)
