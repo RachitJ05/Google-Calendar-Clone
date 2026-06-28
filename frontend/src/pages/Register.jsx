@@ -50,7 +50,7 @@ export default function Register() {
       <div className="auth-card">
 
         <div className="auth-logo">
-          📅
+            <img src="/calendar-svgrepo-com.svg" alt="Calendar" width="60" height="60" />
         </div>
 
         <h1>Create Account</h1>
