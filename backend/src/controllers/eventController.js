@@ -18,6 +18,7 @@ export const listEvents = async (req, res) => {
     if (start && end) {
       const events = await prisma.event.findMany({
         where: {
+          userId: req.user.id,
           AND: [
             { startTime: { lt: end } },
             { endTime: { gt: start } },
@@ -132,6 +133,7 @@ export const updateEvent = async (req, res) => {
     // overlap check excluding self
     const overlapping = await prisma.event.findFirst({
       where: {
+        userId: req.user.id,
         AND: [
           { id: { not: id } },
           { startTime: { lt: endD } },
@@ -142,6 +144,13 @@ export const updateEvent = async (req, res) => {
 
     const updated = await prisma.event.update({
       where: { id },
+      data: {
+        title,
+        description,
+        startTime: startD,
+        endTime: endD,
+        allDay,
+      },
     });
 
     return res.json({
